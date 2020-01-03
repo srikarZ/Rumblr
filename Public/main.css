@@ -1,0 +1,25 @@
+#navbar{
+    background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1));
+    position: fixed;
+    top:0;
+    right:0;
+    width: 100%;
+  }
+
+  #signup{
+      margin-top: 105px;
+      margin-left: 60px;
+  }
+
+  #login{
+    margin-top: 105px;
+    margin-left: 60px;
+  }
+
+  #newacc{
+      margin-left: 9px;
+  }
+
+  #button{
+      margin-left: 9px;
+  }
