@@ -1,4 +1,9 @@
+require 'sinatra/activerecord'
 require 'sinatra'
+require 'sinatra/flash'
+require './environments'
+
+set :database, adapter: ''
 
 get '/' do
   erb :home
