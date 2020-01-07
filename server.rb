@@ -2,8 +2,9 @@ require 'sinatra/activerecord'
 require 'sinatra'
 require 'sinatra/flash'
 require 'pg'
+require './models'
 
-set :database, {adapter: 'postgresql', database: 'USER', 
+set :database, {adapter: 'postgresql', database: 'User', 
 username: 'srikar', password: ENV['PG'] }
 enable :sessions
 
@@ -24,12 +25,13 @@ get '/login' do
 end
 
 get '/signup' do
+  @user=User.new(params[:user])
   erb :signup
 end
 
 post '/login' do
 
-  @user = Users.find_by(email: params[:email])
+  @user = User.find_by(email: params[:email])
   if @user.password == params[:password]
 
     session[:user_id] = @user.id
@@ -44,19 +46,13 @@ post '/login' do
   end
 end
 
-post "/sign-up" do
-  @user = Users.create(
-    first_name: params[:first_name],
-    last_name: params[:last_name],
-    birthday: params[:birthday],
-    email: params[:email],
-    password: params[:password],
-  )
-  @name = params[:first_name]
-
-  session[:user_id] = @user.id
-
-  redirect "/profile"
+post "/signup" do
+  @user = User.new(params[:user])
+    if @user.valid?
+      puts @user
+      @user.save
+      redirect "/profile"
+    end  
 end
 
 
@@ -69,7 +65,7 @@ end
 
 get "/profile" do
 
-  @user = Users.find(session[:user_id])
+  @user = User.find(session[:user_id])
   @name = @user.username
   @posts = @user.posts
 
