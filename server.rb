@@ -1,11 +1,10 @@
 require 'sinatra/activerecord'
 require 'sinatra'
 require 'sinatra/flash'
-require './environments'
 require 'pg'
 
-set :database, {adapter: 'postgresql', database: 'users', 
-username: 'postgres', password: ENV['PG'] }
+set :database, {adapter: 'postgresql', database: 'USER', 
+username: 'srikar', password: ENV['PG'] }
 enable :sessions
 
 get '/' do
@@ -31,7 +30,7 @@ end
 post '/login' do
 
   @user = Users.find_by(email: params[:email])
-  if @user && @user.password == params[:password]
+  if @user.password == params[:password]
 
     session[:user_id] = @user.id
 
@@ -57,7 +56,6 @@ post "/sign-up" do
 
   session[:user_id] = @user.id
 
-
   redirect "/profile"
 end
 
@@ -71,14 +69,12 @@ end
 
 get "/profile" do
 
-  @user = User.find(session[:user_id])
+  @user = Users.find(session[:user_id])
   @name = @user.username
   @posts = @user.posts
 
   erb :profile
 end
 
-# post "/profile" do
-#
-# end
+
 
