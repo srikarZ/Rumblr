@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
+    <title>Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link rel="stylesheet" href="/main.css">
@@ -13,31 +13,37 @@
 
 <nav id="navbar">
     <div class="nav-wrapper">
-      <a href="home" class="brand-logo">POKÉ CENTER</a>
+      <a href="home" class="brand-logo" id="logo">POKÉ CENTER</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="home">Home</a></li>
+        <li><a href="login">Login</a></li>
         <li><a href="posts">Posts</a></li>
-        <li><a href="logout">Logout</a></li>
         <li><a href="https://www.pokemon.com/us/" target="_blank">Official pokemon website</a></li>
       </ul>
     </div>
   </nav>
-<div id="home-content">
-  <h3>Hello <%= user.first_name %> and welcome to the POKÉ CENTER blog<h3>
-</div>
-<br>
 
+<div id="login">
+<form>
 <div class="row">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s6">
-          <textarea id="post" class="materialize-textarea"></textarea>
-          <label for="post">Share anything pokemon</label>
+        <div class="input-field col s4">
+          <input id="email" type="email" class="validate">
+          <label for="email">Email</label>
         </div>
       </div>
-    </form>
-  </div>
+
+<div class="row">
+        <div class="input-field col s4">
+          <input id="password" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+      </div>  
+
   <button class="btn waves-effect waves-light" type="submit" name="action" id="button">Submit</button>
+  <br><br>
+  <a href="signup" id="newacc">Don't have an account? sign up here</a>
+</form>
+</div> 
 
 </body>
 </html>

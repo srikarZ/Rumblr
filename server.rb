@@ -5,7 +5,7 @@ require 'pg'
 require './models'
 
 set :database, {adapter: 'postgresql', database: 'User', 
-username: 'srikar', password: ENV['PG'] }
+username: 'srikar', password: ENV['POSTGRES_RUMBLR_PW'] }
 enable :sessions
 
 get '/' do
