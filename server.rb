@@ -24,26 +24,24 @@ get '/login' do
   erb :login
 end
 
+
 get '/signup' do
   @user=User.new(params[:user])
   erb :signup
 end
 
 post '/login' do
+  @user = User.find_by(params[:email])
+  inputed_password=params[:password]
+  
+  if @user and inputed_password= @user.password
 
-  @user = User.find_by(email: params[:email])
-  if @user.password == params[:password]
+    session[:user_id] = @user.id 
+    redirect '/profile'
 
-    session[:user_id] = @user.id
-
-    redirect "/profile"
-  else
-
-    flash[:warning] = "Your email or password is incorrect"
-
-
-    redirect "/"
-  end
+  else 
+    redirect '/signup'
+  end 
 end
 
 post "/signup" do
@@ -51,6 +49,7 @@ post "/signup" do
     if @user.valid?
       puts @user
       @user.save
+      session[:user_id] = @user.id
       redirect "/profile"
     end  
 end
@@ -66,8 +65,8 @@ end
 get "/profile" do
 
   @user = User.find(session[:user_id])
-  @name = @user.username
-  @posts = @user.posts
+  @name = @user.first_name
+  @posts = @user.first_name
 
   erb :profile
 end
