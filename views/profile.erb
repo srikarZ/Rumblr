@@ -15,7 +15,7 @@
     <div class="nav-wrapper">
       <a href="#" class="brand-logo" id="logo">POKÉ CENTER</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="posts">Posts</a></li>
+        <li><a href="showposts">Show Posts</a></li>
         <li><a href="logout">Logout</a></li>
         <li><a href="https://www.pokemon.com/us/" target="_blank">Official pokemon website</a></li>
       </ul>
@@ -26,17 +26,17 @@
 </div>
 <br>
 
-<div class="row">
-    <form class="col s12">
+<div class="row" id="post-something">
+    <form class="col s12" method="post" action="/profile">
       <div class="row">
         <div class="input-field col s6">
-          <textarea id="post" class="materialize-textarea"></textarea>
+          <textarea id="post" class="materialize-textarea" name="body"></textarea>
           <label for="post">Share anything pokemon</label>
         </div>
       </div>
+      <button class="btn waves-effect waves-light" type="submit" name="action" id="button">Submit</button>
     </form>
   </div>
-  <button class="btn waves-effect waves-light" type="submit" name="action" id="button">Submit</button>
 
 </body>
 </html>

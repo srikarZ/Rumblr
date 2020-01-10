@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,18 +16,25 @@
 
 <nav id="navbar">
     <div class="nav-wrapper">
-      <a href="home" class="brand-logo" id="logo">POKÉ CENTER</a>
+      <a href="#" class="brand-logo" id="logo">POKÉ CENTER</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="home">Home</a></li>
-        <li><a href="login">Login</a></li>
-        <li><a href="posts">Posts</a></li>
+        <li><a href="showposts">Show Posts</a></li>
+        <li><a href="profile">Profile</a></li>
         <li><a href="https://www.pokemon.com/us/" target="_blank">Official pokemon website</a></li>
       </ul>
     </div>
   </nav>
 
-<form>
-  
-</form> 
+<div id="post-container">
+  <% if  @posts != nil %>
+    <% for post in @posts.reverse %>
+    <div class="post">
+        <p><%=   @user.first_name %></p>  
+        <h6><%= post.body %></h6>
+        <hr>
+    </div>
+    <% end %>
+  <% end %>
+</div>
 </body>
 </html>

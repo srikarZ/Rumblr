@@ -16,8 +16,11 @@ get '/home' do
   erb :home
 end
 
-get '/posts' do
-  erb :posts
+get '/showposts' do
+  @user = User.find(session[:user_id])
+  @posts = Post.all
+  pp @posts
+  erb :showposts
 end
 
 get '/login' do
@@ -34,7 +37,7 @@ post '/login' do
   @user = User.find_by(params[:email])
   inputed_password=params[:password]
   
-  if @user and inputed_password= @user.password
+  if @user and inputed_password = @user.password
 
     session[:user_id] = @user.id 
     redirect '/profile'
@@ -65,11 +68,17 @@ end
 get "/profile" do
 
   @user = User.find(session[:user_id])
-  @name = @user.first_name
-  @posts = @user.first_name
+  @post = @user.first_name
 
   erb :profile
 end
+
+post "/profile" do
+  @post=Post.new(body: params[:body])
+  @post.save
+    redirect '/showposts'
+end
+
 
 
 
